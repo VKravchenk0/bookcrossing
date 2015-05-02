@@ -11,12 +11,12 @@
 	
 	<context:component-scan base-package="ua.vkravchenko.bc.controller"></context:component-scan>
 	
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
+	</bean> -->
 	
-	<!--  <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 	    <property name="definitions">
 	        <list>
 	            <value>/WEB-INF/defs/general.xml</value>
@@ -27,6 +27,6 @@
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 	    <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
 	</bean>
-	-->
+	
 
 </beans>

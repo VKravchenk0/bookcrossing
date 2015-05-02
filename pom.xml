@@ -24,6 +24,7 @@
 
 	<properties>
 		<org.springframework.version>4.0.2.RELEASE</org.springframework.version>
+		<apache.tiles>3.0.5</apache.tiles>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -105,6 +106,16 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>${apache.tiles}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>${apache.tiles}</version>
 		</dependency>
 	</dependencies>
 
