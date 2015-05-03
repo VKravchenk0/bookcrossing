@@ -4,25 +4,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
-<link rel="stylesheet" href="/resources/styles/bootstrap.min.css" type="text/css">
 
-<!-- Optional theme 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
-<link rel="stylesheet"
-	href="/resources/styles/journal.bootstrap.min.css"
+<link rel="stylesheet" href="/resources/styles/bootstrap.min.css"
 	type="text/css">
-	
-<!-- Latest compiled and minified JavaScript 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+<link rel="stylesheet"
+	href="/resources/styles/journal.bootstrap.min.css" type="text/css">
+<link href="/resources/styles/simple-sidebar.css" rel="stylesheet">
 <script src="/resources/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
 </head>
 <body>
-	<tiles:insertAttribute name="body" />
+
+	
+
+
+	<div id="wrapper">
+		<!-- Sidebar -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#"> Start Bootstrap </a></li>
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Shortcuts</a></li>
+			</ul>
+		</div>
+		<!-- /#sidebar-wrapper -->
+
+		<!-- Page Content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<tiles:insertAttribute name="body" />
+						<div class="btn btn-default" id="menu-toggle">Toggle Menu</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /#page-content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+<!-- Menu Toggle Script -->
+	<script>
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+	</script>
+
 	<br />
 	<center>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
