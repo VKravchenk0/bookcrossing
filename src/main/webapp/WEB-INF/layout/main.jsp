@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ include file="../layout/taglib.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +20,14 @@
 </head>
 <body>
 
+	<tilesx:useAttribute name="current"/>
+
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
-				<li class="sidebar-brand"><a href="#"> Start Bootstrap </a></li>
-				<li><a href="#">Dashboard</a></li>
+				<li class="sidebar-brand"><a href="/">Bookcrossing</a></li>
+				<li><a href="/users">Users</a></li>
 				<li><a href="#">Shortcuts</a></li>
 			</ul>
 		</div>

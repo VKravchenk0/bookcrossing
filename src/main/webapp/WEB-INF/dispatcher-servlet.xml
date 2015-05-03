@@ -9,6 +9,7 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/favicon.ico" location="/resources/favicon.ico" />
 	
 	<context:component-scan base-package="ua.vkravchenko.bc.controller"></context:component-scan>
 
