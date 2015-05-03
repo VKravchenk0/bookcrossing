@@ -19,9 +19,6 @@
 </head>
 <body>
 
-	
-
-
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
