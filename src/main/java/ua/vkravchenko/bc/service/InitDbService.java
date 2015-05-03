@@ -26,6 +26,12 @@ public class InitDbService {
 		User user2 = new User();
 		user2.setName("Petya");
 		userRepository.save(user2);
+		
+		for (int i = 0; i <= 20; i++) {
+			User user = new User();
+			user.setName(String.valueOf(Character.valueOf((char) ('a' + i))));
+			userRepository.save(user);
+		}
 	}
 	
 

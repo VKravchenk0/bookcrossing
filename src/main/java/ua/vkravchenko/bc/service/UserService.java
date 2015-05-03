@@ -24,9 +24,7 @@ public class UserService {
 	}
 	
 	public List<User> findOnPage(int page) {
-		int lastIndex = page * 20;
-		int startingIndex = lastIndex - 20;
-		return userRepository.findAll(new PageRequest(startingIndex, lastIndex, Direction.ASC, "id")).getContent();
+		return userRepository.findAll(new PageRequest(page, 20, Direction.ASC, "id")).getContent();
 	}
 	
 }
