@@ -34,7 +34,7 @@
 
 		<c:forEach items="${paginationList}" var="pageLink">
 			<li class="${pageLink == page ? 'active' : ''}"><a
-				href="/users?page=${pageLink}">${pageLink}</a></li>
+				href="/users?page=${pageLink}">${pageLink + 1}</a></li>
 		</c:forEach>
 
 		<li><a href="/users?page=${page + 1}" aria-label="Next"> <span

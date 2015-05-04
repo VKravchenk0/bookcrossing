@@ -5,13 +5,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<jdbc:embedded-database type="HSQL" id="dataSource" />
+	<!-- <jdbc:embedded-database type="HSQL" id="dataSource" /> -->
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/bookcrossing"/>
+        <property name="username" value="slava"/>
+        <property name="password" value="W1cbbtlar"/>
+    </bean>
 	
 	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="emf">
 		<property name="packagesToScan" value="ua.vkravchenko.bc.entity" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaProperties">
 			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
