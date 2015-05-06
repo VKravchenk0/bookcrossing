@@ -4,28 +4,26 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
-@Table(name = "app_user")
-public class User {
-	
+public class Book {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
-	@Column(name = "user_id", unique = true, nullable = false)
-	private Integer id;
+	@Column(name="book_id")
+	private int id;
 	
-	@Column(unique = true)
 	private String name;
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "books")
 	private List<Bunch> bunches;
-	
+
 	public List<Bunch> getBunches() {
 		return bunches;
 	}
@@ -34,11 +32,11 @@ public class User {
 		this.bunches = bunches;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -50,11 +48,8 @@ public class User {
 		this.name = name;
 	}
 	
-	public void addBunch(Bunch bunch) {
-		bunches.add(bunch);
-		bunch.setUser(this);
+	public void removeBunch(Bunch bunch) {
+		bunches.remove(bunch);
 	}
-
 	
-
 }

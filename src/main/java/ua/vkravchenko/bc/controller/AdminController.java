@@ -16,7 +16,7 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
-
+	
 	@RequestMapping(value = "/users", params = {"page"})
 	public String users(Model model, @RequestParam(value="page", required=false) Integer page) {
 		if (page < 0) {
