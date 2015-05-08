@@ -4,5 +4,6 @@
 		<class>ua.vkravchenko.bc.entity.User</class>
 		<class>ua.vkravchenko.bc.entity.Book</class>
 		<class>ua.vkravchenko.bc.entity.Bunch</class>
+		<class>ua.vkravchenko.bc.entity.Role</class>
 	</persistence-unit>
 </persistence>

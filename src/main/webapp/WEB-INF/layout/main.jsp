@@ -28,7 +28,7 @@
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="/">Bookcrossing</a></li>
 				<li><a href="/users">Users</a></li>
-				<li><a href="#">Shortcuts</a></li>
+				<li><a href='<spring:url value="/logout" />'>Log out</a></li>
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->

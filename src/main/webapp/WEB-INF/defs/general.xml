@@ -3,7 +3,45 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="common" template="/WEB-INF/layout/main.jsp">
+  <definition name="common" template="/WEB-INF/layout/common.jsp">
+  	<put-attribute name="body" value="" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+  </definition>
+  
+  <definition name="main" template="/WEB-INF/layout/main.jsp" extends="common">
+  	
+  </definition>
+  
+  <definition name="index" extends="main">
+    <put-attribute name="title" value="Bookcrossing" />
+    <put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+    <put-attribute name="current" value="index" />
+  </definition>
+  
+  <definition name="users" extends="main">
+  	<put-attribute name="title" value="Users" />
+    <put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
+    <put-attribute name="current" value="users" />
+  </definition>
+  
+  <definition name="login" extends="common">
+  	<put-attribute name="title" value="Log in" />
+  	<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+  	<put-attribute name="current" value="login" />
+  </definition>
+  
+  <definition name="somepage" extends="common">
+  	<put-attribute name="title" value="Log in" />
+  	<put-attribute name="body" value="/WEB-INF/jsp/somepage.jsp" />
+  	<put-attribute name="current" value="login" />
+  </definition>
+  
+  <!-- <definition name="common" template="/WEB-INF/layout/main.jsp">
+  	<put-attribute name="menu" value="/WEB-INF/layout/sideMenu.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+  </definition>
+  
+  <definition name="loggedIn" template="/WEB-INF/layout/main.jsp">
   	<put-attribute name="menu" value="/WEB-INF/layout/sideMenu.jsp" />
     <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
@@ -19,5 +57,9 @@
     <put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
     <put-attribute name="current" value="users" />
   </definition>
+  
+  <definition name="login" template="/WEB-INF/layou">
+  
+  </definition> -->
   
 </tiles-definitions>

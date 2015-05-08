@@ -26,5 +26,7 @@
 	<jpa:repositories base-package="ua.vkravchenko.bc.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"/>
 	
 	<import resource="database-dev.xml" />
+	
+	<import resource="security.xml" />
 
 </beans>
