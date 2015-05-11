@@ -12,6 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+import ua.vkravchenko.bc.annotation.UniqueEmail;
 
 @Entity
 @Table(name = "app_user")
@@ -23,19 +28,48 @@ public class User {
 	private Integer id;
 	
 	@Column(unique = true)
-	private String name;
+	@Email(message = "Invalid email address")
+	@Size(min = 1, message = "Invalid email address")
+	@UniqueEmail(message = "Username with such email already exists")
+	private String email;
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private List<Bunch> bunches;
 	
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
 	
+	@Size(min = 5, message = "Password must be at least 5 characters")
 	private String password;
 	
+	@Column(nullable = false)
 	private boolean enabled;
 	
+	@Column(nullable = false)
+	@Size(min = 3, message = "Name must be at least 3 characters long")
+	private String firstName;
+	
+	@Column(nullable = false)
+	@Size(min = 3, message = "Last Name must be at least 3 characters long")
+	private String lastName;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}
@@ -76,12 +110,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public void addBunch(Bunch bunch) {

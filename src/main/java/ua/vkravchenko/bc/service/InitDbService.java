@@ -15,6 +15,7 @@ import ua.vkravchenko.bc.entity.Bunch;
 import ua.vkravchenko.bc.entity.Role;
 import ua.vkravchenko.bc.entity.User;
 import ua.vkravchenko.bc.repository.RoleRepository;
+import ua.vkravchenko.bc.repository.UserRepository;
 
 @Transactional
 @Service
@@ -22,6 +23,9 @@ public class InitDbService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private BookService bookService;
@@ -53,17 +57,21 @@ public class InitDbService {
 		roles.add(roleUser);
 		user1.setRoles(roles);
 		user1.setEnabled(true);
-		user1.setName("admin");
-		userService.save(user1);
+		user1.setEmail("lalka@mail.ru");
+		user1.setFirstName("Vyacheslav");
+		user1.setLastName("Kravchenko");
+		userRepository.save(user1);
 		
 		User user2 = new User();
 		user2.setPassword(encoder.encode("user"));
-		user2.setName("user");
+		user2.setEmail("user@mail.ru");
 		List<Role> roles1 = new ArrayList<Role>();
 		roles1.add(roleUser);
 		user2.setRoles(roles1);
 		user2.setEnabled(true);
-		userService.save(user2);
+		user2.setFirstName("Barak");
+		user2.setLastName("Obama");
+		userRepository.save(user2);
 		
 		Book book = new Book();
 		book.setName("Animal farm");

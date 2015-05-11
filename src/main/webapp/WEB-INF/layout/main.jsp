@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../layout/taglib.jsp" %>
+<%@ include file="../layout/taglib.jsp"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,21 +14,36 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
 </head>
 <body>
 
-	<tilesx:useAttribute name="current"/>
-
+	<tilesx:useAttribute name="current" />
 	<div id="wrapper">
 		<!-- Sidebar -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a href="/">Bookcrossing</a></li>
-				<li><a href="/users">Users</a></li>
-				<li><a href='<spring:url value="/logout" />'>Log out</a></li>
+				<li><a href="/">Home</a></li>
+				<security:authorize access="hasRole('ROLE_ADMIN')">
+					<li><a href="/users">Users</a></li>
+				</security:authorize>
+				<security:authorize access="! isAuthenticated()">
+					<li><a href="/login">Login</a></li>
+				</security:authorize>
+				<security:authorize access="! isAuthenticated()">
+					<li><a href="/register">Register</a></li>
+				</security:authorize>
+
+				<security:authorize access="isAuthenticated()">
+					<li><a href='<spring:url value="/logout" />'>Log out</a></li>
+				</security:authorize>
+
+
+
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->
@@ -49,17 +64,18 @@
 	</div>
 	<!-- /#wrapper -->
 
-<!-- Menu Toggle Script -->
+	<!-- Menu Toggle Script -->
 	<script>
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
 		});
 	</script>
-
 	<br />
 	<center>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</center>
 </body>
 </html>
+
+

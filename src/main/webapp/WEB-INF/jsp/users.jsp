@@ -6,14 +6,14 @@
 			<thead>
 				<tr>
 					<th>User id</th>
-					<th>User name</th>
+					<th>Email</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
 					<tr>
 						<td><c:out value="${user.id}" /></td>
-						<td><c:out value="${user.name}" /></td>
+						<td><c:out value="${user.email}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
