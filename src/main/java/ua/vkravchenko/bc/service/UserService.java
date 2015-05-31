@@ -74,5 +74,24 @@ public class UserService {
 		return userRepository.findByEmail(email);
 		
 	}
+
+	public void save(String email, User user) {
+		User userFromDb = findOne(email);
+		if (!user.getFirstName().equals(userFromDb.getFirstName())) {
+			userFromDb.setFirstName(user.getFirstName());
+		}
+		if (!user.getLastName().equals(userFromDb.getLastName())) {
+			userFromDb.setLastName(user.getLastName());
+		}
+		if (!user.getCountry().equals(userFromDb.getCountry())) {
+			userFromDb.setCountry(user.getCountry());
+		}
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(user.getPassword());
+		if (!encodedPassword.equals(userFromDb.getPassword())) {
+			userFromDb.setPassword(encodedPassword);
+		}
+		userRepository.save(userFromDb);
+	}
 	
 }

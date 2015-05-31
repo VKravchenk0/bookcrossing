@@ -1,14 +1,17 @@
 package ua.vkravchenko.bc.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ua.vkravchenko.bc.entity.User;
 import ua.vkravchenko.bc.service.UserService;
 
 @Controller
@@ -55,6 +58,15 @@ public class AdminController {
 			i++;
 		}
 		return list;
+	}
+	
+	
+	@RequestMapping(value = "/users/user/{id}")
+	public String users(Model model, @PathVariable int id) {
+		User user = userService.findOne(id);
+		model.addAttribute("user", user);
+		model.addAttribute("owner", false);
+		return "account";
 	}
 	
 }

@@ -1,18 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ include file="../layout/taglib.jsp"%>
 <c:choose>
 	<c:when test="${not empty users }">
 		<table class="table table-bordered table-hover table-striped">
 			<thead>
 				<tr>
-					<th>User id</th>
+					<th>Name</th>
 					<th>Email</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${users}" var="user">
 					<tr>
-						<td><c:out value="${user.id}" /></td>
+						<td><div><a href='<spring:url value="/users/user/${user.id}" />' ><c:out value="${user.firstName} ${user.lastName}" /></a></div></td>
 						<td><c:out value="${user.email}" /></td>
 					</tr>
 				</c:forEach>

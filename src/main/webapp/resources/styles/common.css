@@ -1,6 +1,6 @@
 /* Sticky footer styles
 -------------------------------------------------- */
-html, body {
+/*html, body {
 	height: 100%;
 	/* The html and body elements cannot have any padding or margin. */
 }
@@ -15,7 +15,7 @@ html, body {
 	padding: 0 0 60px;
 }
 
-/* Set the fixed height of the footer here */
+/* Set the fixed height of the footer here 
 #footer {
 	margin-left: auto;
 	margin-right: auto;
@@ -25,4 +25,11 @@ html, body {
 
 .centered {
   text-align: center;
+}*/
+
+footer {
+	text-align:center;
+	position: fixed;
+	bottom: 40px;
+	width: 100%;
 }

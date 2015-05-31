@@ -52,6 +52,8 @@ local.properties
 ### Maven ###
 /target/
 target/
+/src/main/java/ua/vkravchenko/bc/sandbox/
+src/main/java/ua/vkravchenko/bc/sandbox/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

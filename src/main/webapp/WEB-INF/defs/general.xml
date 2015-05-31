@@ -9,33 +9,34 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
 	</definition>
 
-	<definition name="main" template="/WEB-INF/layout/main.jsp"
-		extends="common">
-
-	</definition>
-
-	<definition name="index" extends="main">
+	<definition name="index" extends="common">
 		<put-attribute name="title" value="Bookcrossing" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="current" value="index" />
 	</definition>
 
-	<definition name="users" extends="main">
+	<definition name="users" extends="common">
 		<put-attribute name="title" value="Users" />
 		<put-attribute name="body" value="/WEB-INF/jsp/users.jsp" />
 		<put-attribute name="current" value="users" />
 	</definition>
 
-	<definition name="login" extends="main">
+	<definition name="login" extends="common">
 		<put-attribute name="title" value="Log in" />
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
 		<put-attribute name="current" value="login" />
 	</definition>
 
-	<definition name="register" extends="main">
+	<definition name="register" extends="common">
 		<put-attribute name="title" value="Register" />
 		<put-attribute name="body" value="/WEB-INF/jsp/register.jsp" />
 		<put-attribute name="current" value="register" />
+	</definition>
+	
+	<definition name="account" extends="common">
+		<put-attribute name="title" value="User Account" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account.jsp" />
+		<put-attribute name="current" value="account" />
 	</definition>
 
 

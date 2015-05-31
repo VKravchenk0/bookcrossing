@@ -1,5 +1,6 @@
 package ua.vkravchenko.bc.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -43,17 +46,58 @@ public class User {
 	@Size(min = 5, message = "Password must be at least 5 characters")
 	private String password;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private boolean enabled;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	@Size(min = 3, message = "Name must be at least 3 characters long")
 	private String firstName;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	@Size(min = 3, message = "Last Name must be at least 3 characters long")
 	private String lastName;
 	
+	private String imageRef;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
+	
+	private String country;
+	
+	private String city;
+	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getImageRef() {
+		return imageRef;
+	}
+
+	public void setImageRef(String imageRef) {
+		this.imageRef = imageRef;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

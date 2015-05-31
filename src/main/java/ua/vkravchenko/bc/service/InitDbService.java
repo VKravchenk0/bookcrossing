@@ -1,6 +1,8 @@
 package ua.vkravchenko.bc.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,8 +14,14 @@ import org.springframework.stereotype.Service;
 
 import ua.vkravchenko.bc.entity.Book;
 import ua.vkravchenko.bc.entity.Bunch;
+import ua.vkravchenko.bc.entity.City;
+import ua.vkravchenko.bc.entity.Country;
+import ua.vkravchenko.bc.entity.Region;
 import ua.vkravchenko.bc.entity.Role;
 import ua.vkravchenko.bc.entity.User;
+import ua.vkravchenko.bc.repository.CityRepository;
+import ua.vkravchenko.bc.repository.CountryRepository;
+import ua.vkravchenko.bc.repository.RegionRepository;
 import ua.vkravchenko.bc.repository.RoleRepository;
 import ua.vkravchenko.bc.repository.UserRepository;
 
@@ -26,6 +34,15 @@ public class InitDbService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private CountryRepository countryRepository;
+	
+	@Autowired
+	private RegionRepository regionRepository;
+	
+	@Autowired
+	private CityRepository cityRepository;
 	
 	@Autowired
 	private BookService bookService;
@@ -60,6 +77,11 @@ public class InitDbService {
 		user1.setEmail("lalka@mail.ru");
 		user1.setFirstName("Vyacheslav");
 		user1.setLastName("Kravchenko");
+		user1.setImageRef("admin.jpg");
+		user1.setCountry("Ukraine");
+		Calendar dob = Calendar.getInstance();
+		dob.set(1994, 0, 21);
+		user1.setDateOfBirth(new Date(dob.getTimeInMillis()));
 		userRepository.save(user1);
 		
 		User user2 = new User();
@@ -71,6 +93,9 @@ public class InitDbService {
 		user2.setEnabled(true);
 		user2.setFirstName("Barak");
 		user2.setLastName("Obama");
+		Calendar dob1 = Calendar.getInstance();
+		dob1.set(1988, 6, 14);
+		user2.setDateOfBirth(new Date(dob.getTimeInMillis()));
 		userRepository.save(user2);
 		
 		Book book = new Book();
@@ -107,15 +132,62 @@ public class InitDbService {
 		bunchService.save(bunch1);
 		
 		
-	
+		loadLocations();
 		
 		
-		/*for (int i = 0; i <= 20; i++) {
-			User user = new User();
-			user.setName(String.valueOf(Character.valueOf((char) ('a' + i))));
-			userRepository.save(user);
-		}*/
 	}
 	
+	private void loadLocations() {
+		
+	}
+	
+	private void loadLocationsOld() {
+		Country country = new Country();
+		country.setId(1);
+		country.setName("Ukraine");
+		country.setRegions(new ArrayList<Region>());
+		countryRepository.save(country);
+		
+		Region region1 = new Region();
+		region1.setId(1);
+		region1.setTitle("Kyiv region");
+		region1.assignCountry(country);
+		region1.setCities(new ArrayList<City>());
+		regionRepository.save(region1);
+		
+		Region region2 = new Region();
+		region2.setId(2);
+		region2.setTitle("Lviv region");
+		region2.assignCountry(country);
+		region2.setCities(new ArrayList<City>());
+		regionRepository.save(region2);
+		
+		City city1 = new City();
+		city1.setId(1);
+		city1.setTitle("Kyiv");
+		city1.setImportant(1);
+		city1.assignRegion(region1);
+		cityRepository.save(city1);
+		
+		City city2 = new City();
+		city2.setId(2);
+		city2.setTitle("Lviv");
+		city2.setImportant(0);
+		city2.assignRegion(region2);
+		cityRepository.save(city2);
+		
+		City city3 = new City();
+		city3.setId(3);
+		city3.setTitle("Boryspil");
+		city3.setImportant(0);
+		city3.assignRegion(region1);
+		cityRepository.save(city3);
+	}
+	
+	
+	
+	/*https://api.vk.com/method/database.getRegions?country_id=2
+	https://api.vk.com/method/database.getCountriesById?country_ids=1
+*/	
 
 }

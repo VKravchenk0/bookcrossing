@@ -5,5 +5,8 @@
 		<class>ua.vkravchenko.bc.entity.Book</class>
 		<class>ua.vkravchenko.bc.entity.Bunch</class>
 		<class>ua.vkravchenko.bc.entity.Role</class>
+		<class>ua.vkravchenko.bc.entity.Region</class>
+		<class>ua.vkravchenko.bc.entity.City</class>
+		<class>ua.vkravchenko.bc.entity.Country</class>
 	</persistence-unit>
 </persistence>
