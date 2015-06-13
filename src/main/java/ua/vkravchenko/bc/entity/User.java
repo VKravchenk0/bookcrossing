@@ -11,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,7 @@ import ua.vkravchenko.bc.annotation.UniqueEmail;
 @Entity
 @Table(name = "app_user")
 public class User {
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
@@ -39,12 +42,35 @@ public class User {
 	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private List<Bunch> bunches;
 	
+	@ManyToOne
+	private City city;
+	
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+	
+	@ManyToOne
+	private Country country;
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
 	@ManyToMany
 	@JoinTable
 	private List<Role> roles;
 	
 	@Size(min = 5, message = "Password must be at least 5 characters")
 	private String password;
+	
 	
 	//@Column(nullable = false)
 	private boolean enabled;
@@ -62,26 +88,6 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	
-	private String country;
-	
-	private String city;
-	
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
@@ -165,6 +171,16 @@ public class User {
 	public void addBunch(Bunch bunch) {
 		bunches.add(bunch);
 		bunch.setUser(this);
+	}
+	
+	public void assignCountry(Country country) {
+		this.setCountry(country);
+		country.getUsers().add(this);
+	}
+	
+	public void assignCity(City city) {
+		this.setCity(city);
+		city.getUsers().add(this);
 	}
 
 	

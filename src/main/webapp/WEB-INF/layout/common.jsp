@@ -6,26 +6,12 @@
 <html>
 <head>
 
-<link rel="stylesheet" href="/resources/styles/bootstrap.min.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="/resources/styles/journal.bootstrap.min.css" type="text/css">
-<link href="/resources/styles/simple-sidebar.css" rel="stylesheet">
-<link href="/resources/styles/common.css" rel="stylesheet">
-<script
-	src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="/resources/js/bootstrap.min.js"></script>
+<%@ include file="../layout/resources.jsp"%>
 
-
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-<script
-	src=""></script>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
 <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
 </head>
 <body>
@@ -66,6 +52,20 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<tiles:insertAttribute name="body" />
+						<!-- <div class="col-lg-4">
+							<select class="country-select" style="width: 100%">
+								<option></option>
+							</select>
+						</div>
+						<div class="col-lg-4">
+							<select class="city-select" style="width: 100%">
+								<option value="3620194" selected="selected">select2/select2</option>
+							</select>
+						</div>  -->
+
+						
+						
+						</div>
 						<!-- <div class="btn btn-default" id="menu-toggle">Toggle Menu</div> -->
 					</div>
 				</div>

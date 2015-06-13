@@ -15,8 +15,9 @@ public class Country {
 	@JsonProperty("cid")
 	private int id;
 	
+	@JsonProperty("title")
 	private String name;
-
+	
 	public String getName() {
 		return name;
 	}
@@ -26,7 +27,18 @@ public class Country {
 	}
 
 	@OneToMany(mappedBy = "country")
-	private List<Region> regions;
+	private List<City> cities;
+	
+	@OneToMany(mappedBy = "country")
+	private List<User> users;
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 
 	public int getId() {
 		return id;
@@ -36,11 +48,12 @@ public class Country {
 		this.id = id;
 	}
 
-	public List<Region> getRegions() {
-		return regions;
+	public List<City> getCities() {
+		return cities;
 	}
 
-	public void setRegions(List<Region> regions) {
-		this.regions = regions;
+	public void setCities(List<City> cities) {
+		this.cities = cities;
 	}
+
 }

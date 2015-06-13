@@ -2,7 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/taglib.jsp"%>
 
-
+<script>
+	var cityName = "${user.city.name}";
+</script>
+<script src="/resources/js/select2/countryList.js"></script>
+<script src="/resources/js/select2/select2.js"></script>
 
 <div class="container">
 	<div class="row">
@@ -36,13 +40,13 @@
 						<c:out value="${user.email}" />
 					</div>
 				</div>
-				<c:if test="${not empty user.country}">
+				<c:if test="${not empty user.city.country}">
 					<div class="col-md-12">
 						<div>
 							<c:out value="Country: " />
 						</div>
 						<div>
-							<c:out value="${user.country}" />
+							<c:out value="${user.city.country.name}" />
 						</div>
 					</div>
 				</c:if>
@@ -52,7 +56,7 @@
 							<c:out value="City: " />
 						</div>
 						<div>
-							<c:out value="${user.city}" />
+							<c:out value="${user.city.name}" />
 						</div>
 					</div>
 				</c:if>
@@ -70,16 +74,12 @@
 
 		</div>
 	</div>
-
-
-
-
 </div>
 
 
-<form:form commandName="user" cssClass="form-horizontal blogForm">
+<form:form commandName="user" cssClass="form-horizontal userEditForm">
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="myModal" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -88,7 +88,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel">New blog</h4>
+					<h4 class="modal-title" id="myModalLabel">Edit info</h4>
 				</div>
 
 				<div class="modal-body">
@@ -97,7 +97,6 @@
 							First Name: </label>
 						<div class="col-sm-10">
 							<form:input path="firstName" cssClass="form-control" />
-							<%-- <form:errors path="name" /> --%>
 						</div>
 					</div>
 				</div>
@@ -107,37 +106,45 @@
 							Name: </label>
 						<div class="col-sm-10">
 							<form:input path="lastName" cssClass="form-control" />
-							<%-- <form:errors path="name" /> --%>
 						</div>
 					</div>
 				</div>
+				
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label"> Country:
+						<label class="col-sm-2 control-label"> Country name:
 						</label>
 						<div class="col-sm-10">
-							<form:input path="country" cssClass="form-control" />
-							<%-- <form:errors path="url" /> --%>
+							<select class="country-select" style="width: 100%">
+								<option></option>
+							</select>
 						</div>
 					</div>
 				</div>
+				<form:hidden path="country.id" id="country-hidden"/>
+				
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">
-							Password: </label>
+						<label class="col-sm-2 control-label"> City name:
+						</label>
 						<div class="col-sm-10">
-							<form:password path="password" cssClass="form-control" />
-							<%-- <form:errors path="url" /> --%>
+							<select class="city-select" style="width: 100%">
+								<option></option>
+							</select>
 						</div>
 					</div>
 				</div>
-
+				<form:hidden path="city.id" id="city-hidden"/>
+							
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<input type="submit" class="btn btn-primary" value="Save" />
 				</div>
+				
 			</div>
+			<div class="somediv">	
 		</div>
+	</div>
 	</div>
 </form:form>
 

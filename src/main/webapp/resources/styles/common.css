@@ -27,6 +27,33 @@
   text-align: center;
 }*/
 
+.city {
+	font-size: 14px;
+	/*color: #ccc;*/
+}
+
+.regionArea {
+	font-size: 12px;
+	color: #ccc;
+}
+
+.select2-results__options li {
+	color: blue;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: black; 
+	color: red;
+}
+
+.somediv {
+	margin-top: 50px;
+	width: 50px;
+	height: 50px;
+	color: red;
+	background-color: blue;
+}
+
 footer {
 	text-align:center;
 	position: fixed;

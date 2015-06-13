@@ -13,10 +13,14 @@ import org.springframework.stereotype.Service;
 
 import ua.vkravchenko.bc.entity.Book;
 import ua.vkravchenko.bc.entity.Bunch;
+import ua.vkravchenko.bc.entity.City;
+import ua.vkravchenko.bc.entity.Country;
 import ua.vkravchenko.bc.entity.Role;
 import ua.vkravchenko.bc.entity.User;
 import ua.vkravchenko.bc.repository.BookRepository;
 import ua.vkravchenko.bc.repository.BunchRepository;
+import ua.vkravchenko.bc.repository.CityRepository;
+import ua.vkravchenko.bc.repository.CountryRepository;
 import ua.vkravchenko.bc.repository.RoleRepository;
 import ua.vkravchenko.bc.repository.UserRepository;
 
@@ -36,6 +40,14 @@ public class UserService {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+	@Autowired
+	private CountryRepository countryRepository;
+	
+	@Autowired
+	private CityRepository cityRepository;
+	
+	@Autowired CityService cityService;
+	
 	public User findOne(int id) {
 		return userRepository.findOne(id);
 	}
@@ -50,6 +62,9 @@ public class UserService {
 	
 	public void save(User user) {
 		user.setEnabled(true);
+		if (user.getPassword() == null) {
+			System.out.println("password is null");
+		}
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		user.setPassword(encoder.encode(user.getPassword()));
 		List<Role> roles = new ArrayList<Role>();
@@ -75,23 +90,63 @@ public class UserService {
 		
 	}
 
-	public void save(String email, User user) {
-		User userFromDb = findOne(email);
-		if (!user.getFirstName().equals(userFromDb.getFirstName())) {
-			userFromDb.setFirstName(user.getFirstName());
+	public void mergeWithExisting(String email, User userFromPost) {
+		User existingUser = findOne(email);
+		if (!userFromPost.getFirstName().equals(existingUser.getFirstName())) {
+			existingUser.setFirstName(userFromPost.getFirstName());
 		}
-		if (!user.getLastName().equals(userFromDb.getLastName())) {
-			userFromDb.setLastName(user.getLastName());
+		if (!userFromPost.getLastName().equals(existingUser.getLastName())) {
+			existingUser.setLastName(userFromPost.getLastName());
 		}
-		if (!user.getCountry().equals(userFromDb.getCountry())) {
-			userFromDb.setCountry(user.getCountry());
+		
+		if (userFromPost.getPassword() != null) {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String encodedPassword = encoder.encode(userFromPost.getPassword());
+			if (!encodedPassword.equals(existingUser.getPassword())) {
+				existingUser.setPassword(encodedPassword);
+			}
 		}
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode(user.getPassword());
-		if (!encodedPassword.equals(userFromDb.getPassword())) {
-			userFromDb.setPassword(encodedPassword);
+		
+		int countryId = userFromPost.getCountry().getId();
+		Country country = null;
+		if (countryId > 0) {
+			country = countryRepository.findOne(countryId);
+			
+			if (country != null) {
+				existingUser.assignCountry(country);
+			}
+		} else {
+			existingUser.setCountry(null);
 		}
-		userRepository.save(userFromDb);
+		
+		int cityId = userFromPost.getCity().getId();
+		if (cityId > 0) {
+			City city = cityRepository.findOne(cityId);
+			if (city == null) {
+				city = cityService.loadCity(cityId, country);
+			}
+			cityRepository.flush();
+			existingUser.assignCity(city);
+			saveUserCityPair(existingUser, city);
+		} else {
+			existingUser.setCity(null);
+		}
+		
 	}
+	
+	@Transactional
+	private void saveUserCityPair(User user, City city){
+		userRepository.save(user);
+		cityRepository.save(city);
+	    
+	}
+	
+	@Transactional
+	private void saveUserCountryPair(User user, Country country){
+	    userRepository.save(user);
+	    countryRepository.save(country);
+	}
+
+	
 	
 }

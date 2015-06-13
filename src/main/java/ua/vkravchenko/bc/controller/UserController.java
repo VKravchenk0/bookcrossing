@@ -38,9 +38,8 @@ public class UserController {
 	public String changeInfo(Model model, @ModelAttribute("user") User user, Principal principal) {
 		
 		String email = principal.getName();
-		userService.save(email, user);
+		userService.mergeWithExisting(email, user);
 		return "redirect:/account";
 	}
-	
 	
 }
