@@ -18,6 +18,12 @@ public class Country {
 	@JsonProperty("title")
 	private String name;
 	
+	@OneToMany(mappedBy = "country")
+	private List<City> cities;
+	
+	@OneToMany(mappedBy = "country")
+	private List<User> users;
+	
 	public String getName() {
 		return name;
 	}
@@ -25,12 +31,6 @@ public class Country {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@OneToMany(mappedBy = "country")
-	private List<City> cities;
-	
-	@OneToMany(mappedBy = "country")
-	private List<User> users;
 
 	public List<User> getUsers() {
 		return users;

@@ -26,6 +26,29 @@ public class City {
 	@OneToMany(mappedBy = "city")
 	private List<User> users;
 
+	@JsonProperty("title")
+	private String name;
+	
+	private String region;
+	
+	private String area;
+	
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
 	public List<User> getUsers() {
 		return users;
 	}
@@ -33,8 +56,6 @@ public class City {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-
-	private String name;
 	
 	public int getId() {
 		return id;

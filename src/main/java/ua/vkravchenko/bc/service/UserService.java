@@ -119,17 +119,20 @@ public class UserService {
 		}
 		
 		int cityId = userFromPost.getCity().getId();
+		String cityName = userFromPost.getCity().getName();
 		if (cityId > 0) {
 			City city = cityRepository.findOne(cityId);
 			if (city == null) {
-				city = cityService.loadCity(cityId, country);
+				city = cityService.loadCity(cityId, cityName, country);
 			}
-			existingUser.assignCity(city);
-			saveUserCityPair(existingUser, city);
+			if (city != null) {
+				existingUser.assignCity(city);
+				saveUserCityPair(existingUser, city);
+			}
+			
 		} else {
 			existingUser.setCity(null);
 		}
-		
 	}
 	
 	@Transactional

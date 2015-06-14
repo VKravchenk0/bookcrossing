@@ -38,8 +38,47 @@ public class CityService {
 	}
 
 	
-	public City loadCity(int id, Country country) {
-		String request = "https://api.vk.com/method/database.getCitiesById?city_ids=" + id + "&lang=ru";
+	public City loadCity(int cityId, String cityName, Country country) {
+		if (country != null) {
+			String request = "https://api.vk.com/method/database.getCities?country_id=" + country.getId() + "&q=" + cityName + "&count=1000&need_all=1&lang=ru";
+			ObjectMapper mapper = new ObjectMapper();
+			City city = null;
+			List<City> cities = null;
+			try {
+				String json = Util.getJson(request);
+				VkApiResponse<City> response = mapper.readValue(json,
+						new TypeReference<VkApiResponse<City>>() {
+						});
+				cities = response.getResponse();
+				for (City cityFromVK : cities) {
+					if (cityFromVK.getId() == cityId) {
+						city = cityFromVK;
+						city.assignCountry(country);
+						city.setUsers(new ArrayList<User>());
+						saveCityCountryPair(city, country);
+						cityRepository.flush();
+						break;
+					}
+				} 
+				return city;
+				
+			} catch (JsonGenerationException e) {
+				e.printStackTrace();
+				return null;
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+				return null;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return null;
+			} 
+		} else {
+			return null;
+		}
+	}
+	
+	/*public City loadCity(int cityId, String cityName, Country country) {
+		String request = "https://api.vk.com/method/database.getCitiesById?city_ids=" + cityId + "&lang=ru";
 		ObjectMapper mapper = new ObjectMapper();
 		City city = null;
 		try {
@@ -67,6 +106,7 @@ public class CityService {
 			e.printStackTrace();
 			return null;
 		} 
-	}
+	}*/
+
 	
 }

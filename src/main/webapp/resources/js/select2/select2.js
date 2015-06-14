@@ -33,7 +33,6 @@ $(document).ready(function() {
 							//prevents select box from opening after clearing
 						    if ($(this).data('state') === 'unselected') {
 						        $(this).removeData('state'); 
-
 						        var self = $(this);
 						        setTimeout(function() {
 						            self.select2('close');
@@ -99,6 +98,7 @@ $(document).ready(function() {
 					        templateSelection: formatDataSelection
 						}).on("select2:select", function(e) {
 							cityId = e.params.data["id"];
+							cityName = e.params.data["title"];
 						}).on("select2:unselect", function(e) {
 							clearCities();
 							$(this).data('state', 'unselected');
@@ -139,6 +139,8 @@ $(document).ready(function() {
 					$('.userEditForm').submit(function() {
 						$('#country-hidden').val(countryId);
 						$('#city-hidden').val(cityId);
+						$('#city-name-hidden').val(cityName);
+						
 					});
 					
 					

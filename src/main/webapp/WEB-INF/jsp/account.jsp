@@ -40,13 +40,13 @@
 						<c:out value="${user.email}" />
 					</div>
 				</div>
-				<c:if test="${not empty user.city.country}">
+				<c:if test="${not empty user.country}">
 					<div class="col-md-12">
 						<div>
 							<c:out value="Country: " />
 						</div>
 						<div>
-							<c:out value="${user.city.country.name}" />
+							<c:out value="${user.country.name}" />
 						</div>
 					</div>
 				</c:if>
@@ -135,6 +135,7 @@
 					</div>
 				</div>
 				<form:hidden path="city.id" id="city-hidden"/>
+				<form:hidden path="city.name" id="city-name-hidden"/>
 							
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
