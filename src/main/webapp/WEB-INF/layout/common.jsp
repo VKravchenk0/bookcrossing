@@ -39,51 +39,33 @@
 				<security:authorize access="isAuthenticated()">
 					<li><a href='<spring:url value="/logout" />'>Log out</a></li>
 				</security:authorize>
-
-
-
 			</ul>
 		</div>
 		<!-- /#sidebar-wrapper -->
 
+	
 		<!-- Page Content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
 						<tiles:insertAttribute name="body" />
-						<!-- <div class="col-lg-4">
-							<select class="country-select" style="width: 100%">
-								<option></option>
-							</select>
-						</div>
-						<div class="col-lg-4">
-							<select class="city-select" style="width: 100%">
-								<option value="3620194" selected="selected">select2/select2</option>
-							</select>
-						</div>  -->
-
-						
-						
-						</div>
-						<!-- <div class="btn btn-default" id="menu-toggle">Toggle Menu</div> -->
 					</div>
+
 				</div>
 			</div>
 		</div>
-		<!-- /#page-content-wrapper -->
+		
+		
+		
+		
+
 
 	</div>
-	<!-- /#wrapper -->
 
-	<!-- Menu Toggle Script -->
-	<!-- <script>
-		$("#menu-toggle").click(function(e) {
-			e.preventDefault();
-			$("#wrapper").toggleClass("toggled");
-		});
-	</script>
-	<br /> -->
+
+
+
 	<footer>
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</footer>
