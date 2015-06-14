@@ -42,7 +42,6 @@ public class CityService {
 		String request = "https://api.vk.com/method/database.getCitiesById?city_ids=" + id + "&lang=ru";
 		ObjectMapper mapper = new ObjectMapper();
 		City city = null;
-		
 		try {
 			String json = Util.getJson(request);
 			VkApiResponse<City> response = mapper.readValue(json,
@@ -51,12 +50,11 @@ public class CityService {
 			
 			city = response.getResponse().get(0);
 			if (country != null) {
-				System.out.println("country existing");
 				city.assignCountry(country);
 				city.setUsers(new ArrayList<User>());
 				saveCityCountryPair(city, country);
+				cityRepository.flush();
 			}
-			System.out.println("returningCity: " + city.getId());
 			return city;
 			
 		} catch (JsonGenerationException e) {

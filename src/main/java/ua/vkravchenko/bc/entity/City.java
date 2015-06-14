@@ -34,19 +34,8 @@ public class City {
 		this.users = users;
 	}
 
-	//@JsonProperty("title")
 	private String name;
 	
-	private int important;
-
-	public int getImportant() {
-		return important;
-	}
-
-	public void setImportant(int important) {
-		this.important = important;
-	}
-
 	public int getId() {
 		return id;
 	}

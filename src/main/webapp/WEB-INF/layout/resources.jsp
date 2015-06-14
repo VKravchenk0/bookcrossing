@@ -15,6 +15,6 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css"
 	rel="stylesheet" />
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+	src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
 
 <link href="/resources/styles/common.css" rel="stylesheet" />

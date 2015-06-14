@@ -111,7 +111,6 @@ public class UserService {
 		Country country = null;
 		if (countryId > 0) {
 			country = countryRepository.findOne(countryId);
-			
 			if (country != null) {
 				existingUser.assignCountry(country);
 			}
@@ -125,7 +124,6 @@ public class UserService {
 			if (city == null) {
 				city = cityService.loadCity(cityId, country);
 			}
-			cityRepository.flush();
 			existingUser.assignCity(city);
 			saveUserCityPair(existingUser, city);
 		} else {
